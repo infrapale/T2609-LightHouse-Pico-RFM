@@ -23,9 +23,8 @@ typedef struct
 
 io_ctrl_st io_ctrl;
 
-led_st led[LED_NBR_OF] =
+led_st led[LED_INDX_NBR_OF] =
 {
-    {PIN_LED_RED, 0, 0, false},
     {PIN_LED_YELLOW, 0, 0, false},
     {PIN_LED_BLUE, 0, 0, false},
 };
@@ -78,7 +77,7 @@ void io_initialize(void)
     digitalWrite(PIN_RFM_RESET, HIGH);
     pinMode(PIN_EN_WATCHDOG, INPUT_PULLUP);
     io_ctrl.pattern_bit = 0;
-    for (uint8_t i = LED_RED; i < LED_NBR_OF; i++)
+    for (uint8_t i = LED_INDX_YELLOW; i < LED_INDX_NBR_OF; i++)
     {
       pinMode(led[i].pin, OUTPUT);
       digitalWrite(led[i].pin, LOW);
@@ -87,9 +86,8 @@ void io_initialize(void)
 void io_task_initialize(void)
 {
     io_ctrl.tindx =  atask_add_new(&io_th);
-    io_led_flash(LED_RED, BLINK_JITTER_1, 40);
-    io_led_flash(LED_YELLOW, BLINK_JITTER_2, 40);
-    io_led_flash(LED_BLUE, BLINK_JITTER_3, 40);
+    io_led_flash(LED_INDX_YELLOW, BLINK_JITTER_2, 40);
+    io_led_flash(LED_INDX_BLUE, BLINK_JITTER_3, 40);
 
 }
 
@@ -108,7 +106,7 @@ void io_task(void)
 {
 
     uint32_t patt = 1UL << io_ctrl.pattern_bit;
-    for (uint8_t i = LED_RED; i < LED_NBR_OF; i++)
+    for (uint8_t i = LED_INDX_YELLOW; i < LED_INDX_NBR_OF; i++)
     {
         if (led[i].enable){
             if ((led[i].tick_nbr > 0) || led[i].forever) {
@@ -129,7 +127,7 @@ void io_task(void)
 
 bool io_pir_detected(void)
 {
-    return (digitalRead(PIN_PIR) == 1);
+    return false;   //(digitalRead(PIN_PIR) == 1);
 }
 
 bool io_wd_is_enabled(void)

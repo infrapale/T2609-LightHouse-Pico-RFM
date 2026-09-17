@@ -33,8 +33,8 @@ relay_cntrl_st relay_ctrl = {0};
 relay_status_st relay_status[MAX_RELAY]; 
 
 uint8_t relay_off_on[MAX_RELAY][2]={
-    {RELAY_1A,RELAY_1B},
-    {RELAY_2A,RELAY_2B},      
+    {PIN_RELAY_1A,PIN_RELAY_1B},
+    {PIN_RELAY_2A,PIN_RELAY_2B},      
 };
 
 void relay_initialize(void) {

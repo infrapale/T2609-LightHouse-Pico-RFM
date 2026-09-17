@@ -2,6 +2,7 @@
 #define __RELAY_H__
 
 #define SWITCH_TIME_x10ms 5
+#define MAX_RELAY         2
 
 
 void relay_initialize(void);

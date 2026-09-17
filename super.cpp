@@ -77,7 +77,7 @@ void super_task(void)
                     Serial.printf("Starting WD reset for counter %d\n",i);
                     super_th.state = 100;
                     super.timeout = millis() + SUPER_WD_TIMEOUT + 1000;
-                    io_led_flash(LED_RED, BLINK_SOS, 100);
+                    io_led_flash(LED_INDX_YELLOW, BLINK_SOS, 100);
                 }
             }
             break;

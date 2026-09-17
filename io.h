@@ -20,8 +20,8 @@
 
 
 // LED Definitions
-#define PIN_LED_RED     (10u)
-#define PIN_LED_YELLOW  (11u)
+#define PIN_LED_YELLOW  (10u)
+#define PIN_LED_BLUE    (11u)
 
 #define PIN_IO_RESET    (12u)
 #define PIN_ONE_WIRE    (13u)
@@ -48,10 +48,9 @@
 
 typedef enum
 {
-    LED_RED = 0,
-    LED_YELLOW,
-    LED_BLUE,
-    LED_NBR_OF
+    LED_INDX_YELLOW = 0,
+    LED_INDX_BLUE,
+    LED_INDX_NBR_OF
 } color_et;
 
 typedef enum

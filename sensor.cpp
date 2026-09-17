@@ -216,7 +216,7 @@ void sensor_add_value(uint8_t sindx, float value)
 
     if((sindx < VALUE_INDEX_NBR_OF) && (!vseries[sindx].is_ready))
     {
-        io_led_flash(LED_YELLOW, BLINK_JITTER_1, 20);
+        io_led_flash(LED_INDX_YELLOW, BLINK_JITTER_1, 20);
         if(vseries[sindx].counter >= NBR_OF_VALUE_POINTS ) {
             vseries[sindx].counter = 0;
         }
@@ -248,12 +248,12 @@ void sensor_add_value(uint8_t sindx, float value)
             if (valid_values >= MIN_NBR_OF_VALID_POINTS){
                 vseries[sindx].filtered_value = result / valid_values;
                 vseries[sindx].is_ready = true;
-                io_led_flash(LED_YELLOW, BLINK_FAST, 80);
+                io_led_flash(LED_INDX_BLUE, BLINK_FAST, 80);
             }
             else {
                 vseries[sindx].filtered_value =0.0;
                 vseries[sindx].is_ready = false;
-                io_led_flash(LED_RED, BLINK_FAST, 120);
+                io_led_flash(LED_INDX_YELLOW, BLINK_FAST, 120);
             }
             vseries[sindx].counter = 0;
         }
@@ -632,7 +632,7 @@ bool sensor_node_send(void)
     #endif
 
     if(do_send){
-        io_led_flash(LED_BLUE, BLINK_NORMAL, 60);
+        io_led_flash(LED_INDX_BLUE, BLINK_NORMAL, 60);
         Serial.println(sensor_ctrl.buff);
         r69_send(sensor_ctrl.buff);
         sensor_node.next_send = millis() + sensor_node.send_interval;
